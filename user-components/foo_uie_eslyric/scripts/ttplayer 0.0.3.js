@@ -49,9 +49,10 @@ function start_search(info, callback)
 		return;
     }
 
-	var _new_lyric = fb.CreateLyric();
+	var _new_lyric = callback.CreateLyric();
 	
 	//parse XML
+	//dbg_trace("\r\n" + xml_text);
 	xmlDoc.loadXML(xml_text);
 	var lyrics = xmlDoc.getElementsByTagName("lrc");
 	for (var i = 0; i < lyrics.length; i++) 
@@ -253,5 +254,6 @@ function process_keywords(str)
 	s = s.replace(/\(.*?\)|\[.*?]|{.*?}|（.*?/g, "");
 	s = s.replace(/[-/:-@[-`{-~]+/g, "");
 	s = s.replace(/[\u2014\u2018\u201c\u2026\u3001\u3002\u300a\u300b\u300e\u300f\u3010\u3011\u30fb\uff01\uff08\uff09\uff0c\uff1a\uff1b\uff1f\uff5e\uffe5]+/g, "");
+	//fb.trace(s);
 	return s;
 }
