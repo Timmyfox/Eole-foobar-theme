@@ -103,13 +103,14 @@ function on_font_changed() {
 
 function get_colors() {
 	get_colors_global();
+	//*
 	if(properties.darklayout || properties.stick2darklayout){
-		colors.highlight_txt = RGB(255,193,0);
+		colors.highlight_txt = RGB(75,165,255);
 		colors.icons_folder = "white";
 		colors.btn_inactive_opacity = 255;
 		colors.inactive_txt = colors.normal_txt;
 	} else {
-		colors.highlight_txt = RGB(215,155,0);
+		colors.highlight_txt = RGB(0,128,255);
 		colors.icons_folder = "";
 		colors.btn_inactive_opacity = 255;
 		colors.inactive_txt = colors.normal_txt;

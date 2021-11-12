@@ -4297,7 +4297,8 @@ oBrowser = function(name) {
 		}
 	}
 	this.on_font_changed = function(refreshDates) {
-		this.fontDate = gdi.Font("Arial", g_fsize-1, 2);
+		//*
+		this.fontDate = gdi.Font("Arial", g_fsize+1, 1);
 		if(refreshDates) this.refreshDates();
 		this.max_duration_length = 0;
 	}
@@ -4623,7 +4624,8 @@ oBrowser = function(name) {
 			}
 		}
 		if(!isWholeLibraryPlaylistFound) {
-			plman.CreateAutoPlaylist(total, globalProperties.whole_library, "ALL ", "%artist% | %album% | $if(%album%,%date%,'9999') | %tracknumber% | %title%", 1);
+			//*
+			plman.CreateAutoPlaylist(total, globalProperties.whole_library, "ALL", "%album artist% | %album% | %path%", 1);
 			plman.MovePlaylist(total, 0);
 			WholeLibraryPlaylistIndex = 0;
 		}

@@ -562,8 +562,9 @@ function build_buttons(){
 				}
 			}, false, false,images.nowplaying_off_icon,images.nowplaying_off_icon,-1, false, false, true),
 			Lightswitch: new JSButton(-38, btn.top_m, btn.width_small_btns, btn.height, "", "lightswitch", "Dark/light switch"+"\n"+"(double click to switch globally)", false, function () {
-				previous_darkvalue = properties.darklayout;				
-				Lightswitch();
+				previous_darkvalue = properties.darklayout;	
+				//*			
+				Lightswitch(true,!previous_darkvalue);
 			}, function () {
 				Lightswitch(true,!previous_darkvalue);
 			}, images.lightswitch_img,images.lightswitch_img,-1, false, false, true),
@@ -2721,7 +2722,8 @@ function on_init(){
 	adapt_buttons_to_layout();
 	g_genre_cache = new oGenreCache();
 	g_genre_cache.build_from_library();
-	g_uihacks.setFrameStyle(3);
+	//*
+	g_uihacks.setFrameStyle(0);
 	g_uihacks.setAeroEffect(2);
 	g_uihacks.setAero(0,0,1,0);
 

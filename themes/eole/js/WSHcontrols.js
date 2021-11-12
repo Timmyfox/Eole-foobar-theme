@@ -1935,7 +1935,8 @@ function setScheduler(schedulerState,dontNotify){
 function setSchedulerText(){
 	switch (true) {
 		case (scheduler.hibernate_after_current):
-			scheduler_string="HIBERNATE AFTER  :  ";
+			//*
+			scheduler_string="HIBERNATE AFTER: ";
 			if(properties.displayRepeat && !properties.displayScheduler) {
 				buttons_right.Scheduler.state = ButtonStates.normal;
 				buttons_right.Repeat.state = ButtonStates.hide;
@@ -1946,7 +1947,8 @@ function setSchedulerText(){
 			buttons_right.Scheduler.D_img = hibernate_img_hover;
 			break;
 		case (scheduler.shutdown_after_current):
-			scheduler_string="SHUTDOWN AFTER  :  ";
+			//*
+			scheduler_string="SHUTDOWN AFTER: ";
 			if(properties.displayRepeat && !properties.displayScheduler) {
 				buttons_right.Scheduler.state = ButtonStates.normal;
 				buttons_right.Repeat.state = ButtonStates.hide;
@@ -1960,12 +1962,13 @@ function setSchedulerText(){
 			var playing_item_location = plman.GetPlayingItemLocation();
 			if (playing_item_location.IsValid && (scheduler.shutdown_after_playlist || scheduler.hibernate_after_playlist)) {
 				remaining_playlist_tracks_count = plman.PlaylistItemCount(plman.PlayingPlaylist)-playing_item_location.PlaylistItemIndex;
-				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " Tracks Remaining  -  ";
+			//*
+				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " tracks remaining)  -  ";
 			} else {
 				remaining_playlist_tracks_count = 0
-				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " Tracks Remaining  -  ";
+				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " tracks remaining)  -  ";
 			}
-			scheduler_string="HIBERNATE  -  "+remaining_playlist_tracks_txt
+			scheduler_string="HIBERNATE ("+remaining_playlist_tracks_txt
 			if(properties.displayRepeat && !properties.displayScheduler) {
 				buttons_right.Scheduler.state = ButtonStates.normal;
 				buttons_right.Repeat.state = ButtonStates.hide;
@@ -1983,12 +1986,13 @@ function setSchedulerText(){
 			var playing_item_location = plman.GetPlayingItemLocation();
 			if (playing_item_location.IsValid && (scheduler.shutdown_after_playlist || scheduler.hibernate_after_playlist)) {
 				remaining_playlist_tracks_count = plman.PlaylistItemCount(plman.PlayingPlaylist)-playing_item_location.PlaylistItemIndex;
-				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " Tracks Remaining  -  ";
+			//*
+				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " Tracks Remaining)  -  ";
 			} else {
 				remaining_playlist_tracks_count = 0
-				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " Tracks Remaining  -  ";
+				remaining_playlist_tracks_txt = remaining_playlist_tracks_count + " Tracks Remaining)  -  ";
 			}
-			scheduler_string="SHUTDOWN  -  "+remaining_playlist_tracks_txt
+			scheduler_string="SHUTDOWN ("+remaining_playlist_tracks_txt
 			if(properties.displayRepeat && !properties.displayScheduler) {
 				buttons_right.Scheduler.state = ButtonStates.normal;
 				buttons_right.Repeat.state = ButtonStates.hide;
@@ -2002,7 +2006,8 @@ function setSchedulerText(){
 			else fb.StopAfterCurrent = false;
 			break;
 		case (fb.StopAfterCurrent):
-			scheduler_string="STOP AFTER  :  "
+			//*
+			scheduler_string="STOP AFTER: "
 			if(properties.displayRepeat && !properties.displayScheduler) {
 				buttons_right.Scheduler.state = ButtonStates.normal;
 				buttons_right.Repeat.state = ButtonStates.hide;
