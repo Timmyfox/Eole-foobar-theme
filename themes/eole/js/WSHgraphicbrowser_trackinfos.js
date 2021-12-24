@@ -4297,8 +4297,7 @@ oBrowser = function(name) {
 		}
 	}
 	this.on_font_changed = function(refreshDates) {
-		//*
-		this.fontDate = gdi.Font("Arial", g_fsize+1, 1);
+		this.fontDate = gdi.Font("Arial", g_fsize-1, 2);
 		if(refreshDates) this.refreshDates();
 		this.max_duration_length = 0;
 	}
