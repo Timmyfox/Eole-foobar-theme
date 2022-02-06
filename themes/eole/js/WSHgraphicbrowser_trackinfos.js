@@ -842,6 +842,7 @@ oPlaylistItem = function (id, name, parentObjName) {
 
         case "up":
             if(this.ishover) {
+				
                 if(g_dragA) {
                     g_drag_timer = false;
                     g_flash_idx = this.id;
@@ -5254,7 +5255,6 @@ oBrowser = function(name) {
                 g_dragC = false;
 
                 this.clicked = false;
-                this.clicked_id = -1;
                 if((g_dragA || g_dragR) && properties.DragToPlaylist) {
                     len = g_plmanager.playlists.length;
                     for(var i = 0; i < len ; i++) {
@@ -5262,6 +5262,7 @@ oBrowser = function(name) {
                             g_plmanager.playlists[i].checkstate("up", x, y, i);
                         }
                     }
+					g_plmanager.checkstate("up", x, y);
 					if(g_dragA || g_dragR) this.stopDragging(x, y);
                     this.repaint();
                 }
@@ -6762,6 +6763,7 @@ function on_mouse_move(x, y, m) {
 			}
 			var effect = fb.DoDragDrop(window.ID, items, g_drop_effect.copy | g_drop_effect.move | g_drop_effect.link, options);
 			// nothing happens here until the mouse button is released
+			brw.on_mouse("lbtn_up", g_cursor.x, g_cursor.y);
 			brw.external_dragging = false;
 			brw.stopDragging();
 			items = undefined;
@@ -6784,6 +6786,7 @@ function on_mouse_move(x, y, m) {
 			}
 			var effect = fb.DoDragDrop(window.ID, items, g_drop_effect.copy | g_drop_effect.move | g_drop_effect.link, options);
 			// nothing happens here until the mouse button is released
+			brw.on_mouse("lbtn_up", g_cursor.x, g_cursor.y);			
 			brw.external_dragging = false;
 			brw.stopDragging();
 			items = undefined;
