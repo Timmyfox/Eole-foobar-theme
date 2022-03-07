@@ -14,7 +14,7 @@ Follow the [instructions below] to install it properly
 
 0. Close foobar.
 
-1. Download this [github repository](https://github.com/Timmyfox/Eole-foobar-theme/zipball/master/) and copy everything into your foobar profile directory (so the 4 folders: user-components, themes, foo_spider_monkey_panel, and plugins).
+1. Download this [github repository](https://github.com/Timmyfox/Eole-foobar-theme/zipball/master/) and copy everything into your foobar profile directory (so the 3 folders: user-components, themes, and plugins).
    - STANDARD foobar2000 installation: your foobar profile directory is there: %AppData%/foobar2000
    - PORTABLE foobar2000 installation: your foobar profile directory is a folder named "profile" inside your installation directory.
 
