@@ -3565,6 +3565,7 @@ function draw_settings_menu(x,y,right_align,sort_group){
 		case (idx == 25):
 			properties.showdateOverCover = !properties.showdateOverCover;
 			window.SetProperty("COVER Show Date over album art", properties.showdateOverCover);
+			brw.refresh_thumbnails();
 			brw.refreshDates();
 			brw.repaint();
 			break;
@@ -3718,6 +3719,7 @@ function draw_settings_menu(x,y,right_align,sort_group){
 		case (idx == 49):
 			properties.extractYearFromDate = !properties.extractYearFromDate;
 			window.SetProperty("COVER extract year from date", properties.extractYearFromDate);
+			brw.refresh_thumbnails();
 			brw.refreshDates();
 			brw.repaint();
 			break;
@@ -7431,7 +7433,7 @@ function on_drag_over(action, x, y, mask) {
     if(x == g_cursor.x && y == g_cursor.y) return true;
 	if(properties.DragToPlaylist) g_plmanager.checkstate("move", x, y);
 	try{
-		action.Text = "Insert";
+		//action.Text = "Insert";
 	} catch(e){}
     g_cursor.x = x;
     g_cursor.y = y;

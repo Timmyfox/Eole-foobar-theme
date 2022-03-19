@@ -1644,6 +1644,7 @@ oBrowser = function(name) {
 
     this.showNowPlaying = function(flash_nowplaying) {
 		var flash_nowplaying = typeof flash_nowplaying !== 'undefined' ? flash_nowplaying : true;
+
         if(fb.IsPlaying) {
 			g_filterbox.clearInputbox();
             try {
@@ -1692,7 +1693,7 @@ oBrowser = function(name) {
 
     this.showFocusedItem = function(g_focus_row) {
 		g_focus_row = typeof g_focus_row !== 'undefined' ? g_focus_row : this.getOffsetFocusItem(g_focus_id);
-
+		console.log("showFocusedItem "+g_focus_row)
        // if(g_focus_row < scroll / properties.rowHeight || g_focus_row > scroll / properties.rowHeight + this.totalRowsVis) {
 		   if(properties.showGroupHeaders) {
 				scroll_to_track = (g_focus_row - Math.floor(this.totalRowsVis/4)) * properties.rowHeight;
@@ -1750,6 +1751,7 @@ oBrowser = function(name) {
     };
 
     this.getAlbumIdfromTrackId = function(valeur) { // fixed!
+	console.log("getAlbumIdfromTrackId"+valeur)
         if(valeur < 0) {
             return -1;
         } else {
@@ -1794,6 +1796,7 @@ oBrowser = function(name) {
             } else {
                 // 1 . rech album id contenant le focus_id
                 g_focus_album_id = this.getAlbumIdfromTrackId(fid);
+				console.log("getOffsetFocusItem "+fid)
                 // 2. rech row id
 				var tot = this.rows.length;
                 for(i = 0; i < tot; i++) {
@@ -1875,6 +1878,7 @@ oBrowser = function(name) {
 		this.groups.splice(0, this.groups.length);
 		this.rows.splice(0, this.rows.length);
         var tf = properties.tf_groupkey;
+		console.log("init_groups")
         var str_filter = process_string(filter_text);
 		for(var i = 0; i < total; i++) {
 			handle = this.list[i];
@@ -1887,6 +1891,7 @@ oBrowser = function(name) {
             };
             if(toAdd) {
 				this.totaltracks++;
+				//console.log(this.list[i]);
                 if(current != previous) {
                     if(g > 0) {
                         // finalize current group
@@ -1919,9 +1924,11 @@ oBrowser = function(name) {
 								this.rows[r] = new Object();
 								this.rows[r].type = k + 1; // 1st line of group header
 								this.rows[r].metadb = this.groups[g].metadb;
+								//console.log(this.groups[g].metadb);
 								this.rows[r].albumId = g;
 								this.rows[r].albumTrackId = 0;
 								this.rows[r].playlistTrackId = this.groups[g].start;
+								this.rows[r].playlistTrackId_original = i;								
 								this.rows[r].groupkey = this.groups[g].groupkey;;
 								this.rows[r].groupkeysplit = this.groups[g].groupkeysplit;
 								this.rows[r].selected = plman.IsPlaylistItemSelected(g_active_playlist, this.rows[r].playlistTrackId);
@@ -1936,6 +1943,7 @@ oBrowser = function(name) {
 							this.rows[r].albumId = g;
 							this.rows[r].albumTrackId = 0;
 							this.rows[r].playlistTrackId = this.groups[g].start;
+							this.rows[r].playlistTrackId_original = i;							
 							this.rows[r].groupkey = this.groups[g].groupkey;
 							this.rows[r].groupkeysplit = this.groups[g].groupkeysplit;
 							this.rows[r].tracktype = TrackType(this.rows[r].metadb);
@@ -1957,10 +1965,11 @@ oBrowser = function(name) {
 					if(!(properties.autocollapse && properties.showGroupHeaders)) {
 						this.rows[r] = new Object();
 						this.rows[r].type = 0; // track
-						this.rows[r].metadb = this.list[this.groups[g-1].start + j];
+						this.rows[r].metadb = this.list[i];
 						this.rows[r].albumId = g-1;
 						this.rows[r].albumTrackId = j;
 						this.rows[r].playlistTrackId = this.groups[g-1].start + j;
+						this.rows[r].playlistTrackId_original = i;						
 						this.rows[r].groupkey = this.groups[g-1].groupkey;
 						this.rows[r].groupkeysplit = this.groups[g-1].groupkeysplit;
 						this.rows[r].tracktype = TrackType(this.rows[r].metadb);
@@ -1968,12 +1977,14 @@ oBrowser = function(name) {
 						//if(this.rows[r].selected)
 							//this.groups[g-1].selected = true;
 						this.rows[r].rating = -1;
+						if(r==3) console.log(this.rows[r].metadb);
 						j++;
 						r++;
+						
 					}
                     t++;
                 };
-            };
+            }
 		};
 
         this.rowsCount = r;
@@ -2070,6 +2081,7 @@ oBrowser = function(name) {
 					this.rows[r].albumId = i;
 					this.rows[r].albumTrackId = 0;
 					this.rows[r].playlistTrackId = this.groups[i].start;
+					this.rows[r].playlistTrackId_original = this.groups[i].start;						
 					this.rows[r].groupkey = this.groups[i].groupkey;
 					this.rows[r].groupkeysplit = this.groups[i].groupkeysplit;
 					this.rows[r].selected = plman.IsPlaylistItemSelected(g_active_playlist, this.rows[r].playlistTrackId);
@@ -2087,6 +2099,7 @@ oBrowser = function(name) {
                     this.rows[r].albumId = i;
                     this.rows[r].albumTrackId = j;
                     this.rows[r].playlistTrackId = this.groups[i].start + j;
+					this.rows[r].playlistTrackId_original = this.groups[i].start + j;					
                     this.rows[r].groupkey = this.groups[i].groupkey;
 					this.rows[r].groupkeysplit = this.groups[i].groupkeysplit;
                     this.rows[r].tracktype = TrackType(this.rows[r].metadb);
@@ -2682,7 +2695,7 @@ oBrowser = function(name) {
                                     var ay_2 = ay + ah_1 - 2;
                                     var ah_2 = ah - Math.floor(ah /2);
 
-                                    if(this.nowplaying && this.rows[i].playlistTrackId == this.nowplaying.PlaylistItemIndex){ // now playing track
+                                    if(this.nowplaying && this.rows[i].playlistTrackId_original == this.nowplaying.PlaylistItemIndex){ // now playing track
 
 										this.groups[this.rows[i].albumId].isPlaying = true;
 										this.isPlayingIdx = this.rows[i].albumId;
@@ -3001,7 +3014,7 @@ oBrowser = function(name) {
                                 } else {
 
                                     // calc text part width + dtaw text
-                                    if(this.nowplaying && this.rows[i].playlistTrackId == this.nowplaying.PlaylistItemIndex) { // now playing track
+                                    if(this.nowplaying && this.rows[i].playlistTrackId_original == this.nowplaying.PlaylistItemIndex) { // now playing track
 										this.groups[this.rows[i].albumId].isPlaying = true;
 										this.isPlayingIdx = this.rows[i].albumId;
 										if(cNowPlaying.flashEnable && cNowPlaying.flash){
@@ -3617,11 +3630,11 @@ oBrowser = function(name) {
                             break;
                         case (rowType == 0): // track
 							plman.FlushPlaybackQueue();
-
 							plman.PlayingPlaylist = g_active_playlist;
-							plman.SetPlaylistFocusItem(g_active_playlist,this.rows[this.activeRow].playlistTrackId);
+							plman.SetPlaylistFocusItem(g_active_playlist,this.rows[this.activeRow].playlistTrackId_original);
+							console.log(this.activeRow+" - "+this.rows[this.activeRow].metadb.RawPath);
 							focus_changes.collapse = true;
-							plman.AddPlaylistItemToPlaybackQueue(g_active_playlist, this.rows[this.activeRow].playlistTrackId);
+							plman.AddPlaylistItemToPlaybackQueue(g_active_playlist, this.rows[this.activeRow].playlistTrackId_original);
 							if(fb.IsPaused || fb.IsPlaying) fb.Next();
 							else fb.Play();
 							//previous_active_playlist = plman.ActivePlaylist;
@@ -6256,6 +6269,7 @@ function on_playback_new_track(metadb) {
 		if((((fb.CursorFollowPlayback || properties.FollowNowPlaying) && (!(window.Name=="BottomPlaylist" && g_active_playlist!=plman.PlayingPlaylist) || properties.lockOnNowPlaying)) && !(g_filterbox.inputbox.edit || g_filterbox.inputbox.length > 0)) || (brw.expanded_group<0 && properties.autocollapse && plman.PlayingPlaylist == g_active_playlist)) {		
 			brw.dontFlashNowPlaying=true;
 			brw.showNowPlaying();
+			console.log("showNowPlaying")
 		}
 		g_total_seconds =  properties.tf_total_seconds.Eval(true);
 		if(g_total_seconds!="ON AIR") g_time_remaining = "-"+g_total_seconds.toHHMMSS();
@@ -6428,11 +6442,13 @@ function on_item_focus_change(playlist, from, to) {
 				if(properties.autocollapse && focus_changes.collapse) {
 					if(from > -1 && from < brw.list.Count) {
 						var old_focused_group_id = brw.getAlbumIdfromTrackId(from);
+						console.log("old_focused_group_id "+old_focused_group_id)
 					} else {
 						var old_focused_group_id = -1;
 					};
 					if(to > -1 && to < brw.list.Count) {
 						var new_focused_group_id = brw.getAlbumIdfromTrackId(to);
+						console.log("new_focused_group_id "+new_focused_group_id)
 					} else {
 						var old_focused_group_id = -1;
 					};
@@ -6992,8 +7008,8 @@ function on_drag_over(action, x, y, mask) {
     g_dragndrop_bottom = false;
     brw.on_mouse("drag_over", x, y);
 	try{
-		if(brw.drag_tracks) action.Text = "Move";
-		else action.Text = "Insert";
+		//if(brw.drag_tracks) action.Text = "Move";
+		//else action.Text = "Insert";
 	} catch(e){}
 	if(scroll > 0 && y < brw.y + ((properties.doubleRowText)?properties.rowHeight:properties.rowHeight*2)) {
 		if(!brw.buttonclicked) {
