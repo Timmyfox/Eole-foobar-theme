@@ -4,7 +4,7 @@ This is a modified version of the Eole foobar theme by Ottodix (https://github.c
 
 This is a skin for the [foobar2000](https://www.foobar2000.org) audio player.
 This theme require Foobar2000 1.4 (or superior).
-Follow the [instructions below] to install it properly
+Follow the instructions below to install it properly
 
 ## Preview
 
@@ -15,8 +15,8 @@ Follow the [instructions below] to install it properly
 0. Close foobar.
 
 1. Download this [github repository](https://github.com/Timmyfox/Eole-foobar-theme/zipball/master/) and copy everything into your foobar profile directory (so the 3 folders: user-components, themes, and plugins).
-   - STANDARD foobar2000 installation: your foobar profile directory is there: %AppData%/foobar2000
-   - PORTABLE foobar2000 installation: your foobar profile directory is a folder named "profile" inside your installation directory.
+   - STANDARD foobar2000 installation: your foobar profile directory is in here: %AppData%/foobar2000
+   - PORTABLE foobar2000 installation: your foobar profile directory is in a folder named "profile" inside your installation directory.
 
 2. Run foobar, choose ColumnUI as user interface (from the prompt, or from File > Preferences > Display)
 
