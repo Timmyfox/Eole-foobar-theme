@@ -744,7 +744,7 @@ function adapt_buttons_to_layout(){
 			buttons.NowPlaying.setVisibility(false);
 		else buttons.NowPlaying.setVisibility(true);
 
-		additional_btns.x = 13;
+		additional_btns.x = 14;
 
 
 		window_btns.setBtnsWidth(45);
