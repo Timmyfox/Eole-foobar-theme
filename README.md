@@ -1,10 +1,16 @@
-This is a modified version of the Eole foobar theme by Ottodix (https://github.com/Ottodix).
+This is a modified version of the Eole foobar theme by Ottodix (https://github.com/Ottodix). It mostly consists of some personal adjustments and tweaks to the look and feel of the theme, such as adding lyrics to the main library tab and restoring the normally hidden title bar.
 
 # Eole Foobar theme
 
 This is a skin for the [foobar2000](https://www.foobar2000.org) audio player.
 This theme require Foobar2000 1.4 (or superior).
 Follow the instructions below to install it properly
+
+## Contribute to the theme
+
+If you'd like to contribute to the theme, I suggest checking out the original repo by Ottodix (https://github.com/Ottodix) and submitting your bug reports or pull requests there.
+
+If it's specifically regarding my modifications, you're of course free to report bugs or suggest any further changes.
 
 ## Preview
 
