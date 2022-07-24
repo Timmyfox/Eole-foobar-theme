@@ -10,7 +10,7 @@ Follow the instructions below to install it properly
 
 If you'd like to contribute to the theme, I suggest checking out the original repo by Ottodix (https://github.com/Ottodix) and submitting your bug reports or pull requests there.
 
-If it's specifically regarding my modifications, you're of course free to report bugs or suggest any further changes.
+If it's specifically regarding my modifications, you're of course free to report bugs or suggest any further changes here.
 
 ## Preview
 
