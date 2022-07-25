@@ -122,11 +122,16 @@ function get_colors() {
 	eslPanel.SetTextHighlightColor(colors.highlight_txt);
 	eslPanel.SetBackgroundColor(colors.normal_bg);
 	lyrics_first_load = utils.Glob(SettingsPath+""+"LYRICSFIRSTLOAD_*");
-	// if(lyrics_first_load.length<1){
-	// 	esl.ShowDesktopLyric = false;
-	// 	esl.DesktopLyricAlwaysOnTop = false;
-	// 	g_files.CreateTextFile(SettingsPath+"LYRICSFIRSTLOAD_0", true).Close();			
-	// }
+	if(lyrics_first_load.length<1){
+		// 	esl.ShowDesktopLyric = false;
+		// 	esl.DesktopLyricAlwaysOnTop = false;
+			eslPanel.SetTextFont("Segoe UI", 12, 0);
+			eslPanel.SetVertMargin(0);
+			eslPanel.SetHorizMargin(13);
+			eslPanel.SetLineSpace(8);
+			eslPanel.SetSentenceSpace(0);
+			g_files.CreateTextFile(SettingsPath+"LYRICSFIRSTLOAD_0", true).Close();			
+		}
 };
 function on_mouse_rbtn_up(x, y){
 	var _menu = window.CreatePopupMenu();
