@@ -109,7 +109,7 @@ function on_paint(gr) {
 		gr.GdiDrawText("Lyrics", font_title, colors.normal_txt, padding_left, (lyrics_state.isEqual(5)?padding_top_nobio:padding_top), ww - padding_left-padding_right, header_height, DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
 	}
 	else {
-		gr.GdiDrawText("Please enable scripts\nin the ESLyrics\nadvanced preferences\nand restart foobar.\n\n(pref.script.expose -> 1)", gdi.Font("segoe ui", 12, 1), colors.normal_txt, padding_left, (lyrics_state.isEqual(5)?padding_top_nobio:padding_top), ww - padding_left-padding_right, header_height, DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
+		gr.GdiDrawText("ESLyric scripts are disabled!\nTo enable scripts, set \n'pref.script.expose' to '1' in\nPreferences > Tools > ESlyric >\n> Advanced\nThen restart Foobar2000.\n\nClick here to open preferences...", gdi.Font("segoe ui", 12, 1), RGB(255,0,0), 10, 10, ww, header_height, DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
 	}
 	drawAllButtons(gr);
 }
@@ -149,7 +149,7 @@ function get_colors() {
 			eslPanel.SetHorizMargin(13);
 			eslPanel.SetLineSpace(8);
 			eslPanel.SetSentenceSpace(0);
-			g_files.CreateTextFile(SettingsPath+"LYRICSFIRSTLOAD_0", true).Close();			
+			g_files.CreateTextFile(SettingsPath+"LYRICSFIRSTLOAD_0", true).Close();
 		}
 	}
 };
