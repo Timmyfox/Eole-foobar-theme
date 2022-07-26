@@ -7,9 +7,18 @@ var header_height = 135;
 var ww = 0;
 var wh = 0;
 var lyricsText_Width = -1;
-var esl = new ActiveXObject("ESLyric");
-var eslPanel = esl.GetAll();
-//eslPanel.SetPlayingLyricChangedCallback(lyrics_callback);
+
+var eslScripts = true;
+try {
+	var esl = new ActiveXObject("ESLyric");
+	var eslPanel = esl.GetAll();
+	//eslPanel.SetPlayingLyricChangedCallback(lyrics_callback);
+}
+
+catch(ex){
+	eslScripts = false;
+}
+
 var Update_Required_function= "";
 var btn_initialized = false;
 var images = {};
@@ -61,6 +70,9 @@ function on_mouse_leave() {
 }
 function on_mouse_lbtn_down(x,y){
 	all_btns.on_mouse("lbtn_down",x, y);
+	if(!eslScripts) {
+		fb.ShowPreferences();
+	}
 }
 function on_mouse_lbtn_up(x,y){
 	all_btns.on_mouse("lbtn_up",x, y);
@@ -93,7 +105,12 @@ function on_paint(gr) {
 		lyricsText_Width = gr.CalcTextWidth("Lyrics", font_title)+10;
 		positionButtons();
 	}
-	gr.GdiDrawText("Lyrics", font_title, colors.normal_txt, padding_left, (lyrics_state.isEqual(5)?padding_top_nobio:padding_top), ww - padding_left-padding_right, header_height, DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
+	if(eslScripts) {
+		gr.GdiDrawText("Lyrics", font_title, colors.normal_txt, padding_left, (lyrics_state.isEqual(5)?padding_top_nobio:padding_top), ww - padding_left-padding_right, header_height, DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
+	}
+	else {
+		gr.GdiDrawText("Please enable scripts\nin the ESLyrics\nadvanced preferences\nand restart foobar.\n\n(pref.script.expose -> 1)", gdi.Font("segoe ui", 12, 1), colors.normal_txt, padding_left, (lyrics_state.isEqual(5)?padding_top_nobio:padding_top), ww - padding_left-padding_right, header_height, DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
+	}
 	drawAllButtons(gr);
 }
 function on_font_changed() {
@@ -118,11 +135,13 @@ function get_colors() {
 	}
 	images.lyrics_off_icon = gdi.Image(theme_img_path + "\\icons\\"+colors.icons_folder+"\\nowplaying_on.png");
 	images.lyrics_off_hover_icon = gdi.Image(theme_img_path + "\\icons\\"+colors.icons_folder+"\\nowplaying_on_hover.png");
-	eslPanel.SetTextColor(colors.normal_txt);
-	eslPanel.SetTextHighlightColor(colors.highlight_txt);
-	eslPanel.SetBackgroundColor(colors.normal_bg);
-	lyrics_first_load = utils.Glob(SettingsPath+""+"LYRICSFIRSTLOAD_*");
-	if(lyrics_first_load.length<1){
+
+	if(eslScripts) {
+		eslPanel.SetTextColor(colors.normal_txt);
+		eslPanel.SetTextHighlightColor(colors.highlight_txt);
+		eslPanel.SetBackgroundColor(colors.normal_bg);
+		lyrics_first_load = utils.Glob(SettingsPath+""+"LYRICSFIRSTLOAD_*");
+		if(lyrics_first_load.length<1){
 		// 	esl.ShowDesktopLyric = false;
 		// 	esl.DesktopLyricAlwaysOnTop = false;
 			eslPanel.SetTextFont("Segoe UI", 12, 0);
@@ -132,6 +151,7 @@ function get_colors() {
 			eslPanel.SetSentenceSpace(0);
 			g_files.CreateTextFile(SettingsPath+"LYRICSFIRSTLOAD_0", true).Close();			
 		}
+	}
 };
 function on_mouse_rbtn_up(x, y){
 	var _menu = window.CreatePopupMenu();
@@ -179,7 +199,7 @@ gb = searching_img.GetGraphics();
 searching_img.ReleaseGraphics(gb);
 
 function on_playback_new_track(){
-	if(window.IsVisible) {
+	if(window.IsVisible && eslScripts) {
 		//eslPanel.SetTextColor(colors.normal_bg);
 		//eslPanel.SetBackgroundType(1);
 		//eslPanel.SetBackgroundImageSource(1);
