@@ -573,7 +573,8 @@ function build_buttons(){
 			}, false,false,images.search_toggle_img,images.search_toggle_img,-1, false, false, true),
 			Settings: new JSButton(2, -1, Settings_width, btn.height-3, "Foobar", "Foobar", "Main menu", function () {
 				g_tooltip.Deactivate();
-				draw_main_menu(0, 28);
+				//*
+				draw_main_menu(0, btn.top_m+32);
 			}, false,false,images.global_settings_img,images.global_settings_img,-1, false, false, false),
 			Close: new JSButton(-45, 0, 45, 29, "", "close", "", false, function () {
 				fb.Exit();
@@ -599,8 +600,8 @@ function build_buttons(){
 
 		all_btns = new JSButtonGroup("top-left", 0, 0, 'all_btns', false);
 		all_btns.addButtons(buttons, [0,0,0,0]);
-
-		topleft_btns = new JSButtonGroup("top-left", 0, 0, 'topleft_btns', true);
+		//*
+		topleft_btns = new JSButtonGroup("top-left", 0, btn.top_m+2, 'topleft_btns', true);
 		topleft_btns.addButtons([buttons.Settings], [0,0,0,0]);
 		topleft_btns.setPadding([0,7,0,2]);
 
@@ -765,7 +766,8 @@ function adapt_buttons_to_layout(){
 			//properties.showPanelBtnText = true;
 			topleft_btns.setBtnsHeight(btn.height-3);
 			topleft_btns.setPadding([0,7,0,2]);
-			main_panel_btns.x = 17;
+			//*
+			main_panel_btns.x = 100;
 			main_panel_btns.setBtnsHeight(btn.height);
 			additional_btns.setBtnsHeight(btn.height);
 			window_btns.setBtnsHeight(29);
@@ -2949,8 +2951,8 @@ function on_init(){
 	g_genre_cache.build_from_library();
 	//*
 	g_uihacks.setFrameStyle(0);
-	g_uihacks.setAeroEffect(2);
-	g_uihacks.setAero(0,0,1,0);
+	g_uihacks.setAeroEffect(0);
+	// g_uihacks.setAero(0,0,1,0);
 
 	if(fb.IsPlaying) caption_title = fb.TitleFormat("[%artist%  -  ][%album%[  -  %tracknumber%] : ]%title%[  -  %date%]").Eval();
 	if(settings_file_not_found){

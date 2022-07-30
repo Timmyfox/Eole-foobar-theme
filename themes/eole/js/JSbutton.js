@@ -135,13 +135,15 @@ function JSButton(x, y, w, h, label, name, tooltip_text, fonDown, fonUp, fonDble
 		}
 		
 		if(this.name == "Foobar"){
-			if(compact_titlebar.isActive() && layout_state.isEqual(0)) gr.FillSolidRect(this.x+this.w-1, 0, 1, this.h, colors.settings_btn_line);
-			else {
+			//*
+			if(compact_titlebar.isActive() && layout_state.isEqual(0)) 
 				gr.FillSolidRect(this.x+this.w-1, 0, 1, this.h, colors.settings_btn_line);
-				gr.FillSolidRect(0, this.h-1, this.x+this.w-1, 1, colors.settings_btn_line);
+			else {
+				gr.FillSolidRect(this.x+this.w-1, btn.top_m+2, 1, this.h, colors.settings_btn_line);
+				// gr.FillSolidRect(0, this.h+3, this.x+this.w-1, 1, colors.settings_btn_line);
 			}
 			if(this.state==ButtonStates.hover || this.state==ButtonStates.down){
-				gr.FillSolidRect(this.x, -1, this.w-1, this.h, colors.settings_btn_hover_bg);
+				gr.FillSolidRect(this.x, btn.top_m+2, this.w-1, this.h, colors.settings_btn_hover_bg);
 			}	
 		}
 		
