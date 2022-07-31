@@ -47,8 +47,8 @@ WARNING: The visualization tab is powered by Shpeck, which can be unstable. So i
 ## Credits
 - [Ottodix](https://github.com/Ottodix): Original Eole theme
 - [TheQwertiest](https://github.com/TheQwertiest): Spider Monkey Panel, which powers most of this theme [foo_spider_monkey_panel](https://github.com/TheQwertiest/foo_spider_monkey_panel)
-- [marc2003](https://github.com/marc2k3): Original [foo_jscript_panel](https://github.com/marc2k3/foo_jscript_panel)
-- [T.P. Wang](https://hydrogenaud.io/index.php?action=profile;u=44175): Original [WSH Panel Mod](https://code.google.com/archive/p/foo-wsh-panel-mod).
-- [Br3tt aka Falstaff](https://www.deviantart.com/br3tt): Original code for most of the panels
-- [WilB](https://hydrogenaud.io/index.php?action=profile;u=33113): Original code of the library tree panel, and biography panel
+- [marc2003](https://github.com/marc2k3): original [foo_jscript_panel](https://github.com/marc2k3/foo_jscript_panel)
+- [T.P. Wang](https://hydrogenaud.io/index.php?action=profile;u=44175): original [WSH Panel Mod](https://code.google.com/archive/p/foo-wsh-panel-mod).
+- [Br3tt aka Falstaff](https://www.deviantart.com/br3tt): original code for most of the panels
+- [WilB](https://github.com/Wil-B): original code of the [library tree panel](https://github.com/Wil-B/Library-Tree), and [biography panel](https://github.com/Wil-B/Biography)
 - [Chottu](http://foo2k.chottu.net/): Channel spectrum panel
