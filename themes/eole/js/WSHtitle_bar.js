@@ -534,9 +534,9 @@ function build_buttons(){
 					}, 100);*/
 				}
 			}, false, false,images.nowplaying_off_icon,images.nowplaying_off_icon,-1, false, false, true),
-			Lightswitch: new JSButton(-38, btn.top_m, btn.width_small_btns, btn.height, "", "lightswitch", "Dark/light switch"+"\n"+"(double click to switch globally)", false, function () {
-				previous_darkvalue = properties.darklayout;	
-				//*			
+			//*
+			Lightswitch: new JSButton(-38, btn.top_m, btn.width_small_btns, btn.height, "", "lightswitch", "Dark/light switch", false, function () {
+				previous_darkvalue = properties.darklayout;			
 				Lightswitch(true,!previous_darkvalue);
 			}, function () {
 				Lightswitch(true,!previous_darkvalue);
@@ -2928,8 +2928,8 @@ function on_init(){
 	g_genre_cache.build_from_library();
 	//*
 	g_uihacks.setFrameStyle(0);
-	g_uihacks.setAeroEffect(0);
-	// g_uihacks.setAero(0,0,1,0);
+	g_uihacks.setAeroEffect(2);
+	g_uihacks.setAero(0,0,1,0);
 
 	if(fb.IsPlaying) caption_title = fb.TitleFormat("[%artist%  -  ][%album%[  -  %tracknumber%] : ]%title%[  -  %date%]").Eval();
 	if(settings_file_not_found){
