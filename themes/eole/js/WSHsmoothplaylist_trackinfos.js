@@ -19,7 +19,7 @@ var properties_big = {
     library_dark_theme: window.GetProperty("BIG:library_dark_theme", false),
     playlists_dark_theme: window.GetProperty("BIG:playlists_dark_theme", false),
     bio_dark_theme: window.GetProperty("BIG:bio_dark_theme", false),
-	bio_stick2darklayout: window.GetProperty("BIG:bio_stick2darklayout",true),
+	bio_stick2darklayout: window.GetProperty("BIG:bio_stick2darklayout",false),
     visualization_dark_theme: window.GetProperty("BIG:visualization_dark_theme", false),
     showwallpaper: window.GetProperty("BIG:showwallpaper", false),
     wallpaperblurred: window.GetProperty("BIG:wallpaperblurred", true),

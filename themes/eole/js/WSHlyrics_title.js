@@ -20,7 +20,7 @@ var properties = {
     wallpaperdisplay: window.GetProperty("Wallpaper 0=Filling 1=Adjust 2=Stretch", 2),
 	showwallpaper: window.GetProperty("_DISPLAY: Show Wallpaper", false),
 	darklayout: window.GetProperty("_DISPLAY: Dark layout", false),
-	stick2darklayout: window.GetProperty("_DISPLAY: stick to Dark layout", true),
+	stick2darklayout: window.GetProperty("_DISPLAY: stick to Dark layout", false),
     album_review: window.GetProperty("_SYSTEM: Display album review", false)
 }
 function build_buttons(){
@@ -104,7 +104,6 @@ function on_font_changed() {
 
 function get_colors() {
 	get_colors_global();
-	//*
 	if(properties.darklayout || properties.stick2darklayout){
 		colors.highlight_txt = RGB(75,165,255);
 		colors.icons_folder = "white";
@@ -123,13 +122,6 @@ function get_colors() {
 	eslPanel.SetBackgroundColor(colors.normal_bg);
 	lyrics_first_load = utils.Glob(SettingsPath+""+"LYRICSFIRSTLOAD_*");
 	if(lyrics_first_load.length<1){
-	// 	esl.ShowDesktopLyric = false;
-	// 	esl.DesktopLyricAlwaysOnTop = false;
-		// eslPanel.SetTextFont("Segoe UI", 12, 0);
-		// eslPanel.SetVertMargin(0);
-		// eslPanel.SetHorizMargin(13);
-		// eslPanel.SetLineSpace(8);
-		// eslPanel.SetSentenceSpace(0);
 		g_files.CreateTextFile(SettingsPath+"LYRICSFIRSTLOAD_0", true).Close();			
 	}
 };

@@ -4611,7 +4611,6 @@ oBrowser = function(name) {
 			}
 		}
 		if(!isWholeLibraryPlaylistFound) {
-			//*
 			plman.CreateAutoPlaylist(total, globalProperties.whole_library, "ALL", "%album artist% | %album% | %path%", 1);
 			plman.MovePlaylist(total, 0);
 			WholeLibraryPlaylistIndex = 0;
