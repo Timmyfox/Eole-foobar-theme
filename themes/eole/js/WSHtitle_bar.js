@@ -46,9 +46,9 @@ var properties = {
 	alwaysShowSearch: window.GetProperty("_DISPLAY: always show search box", true),
 	mini_mainmenu_button: window.GetProperty("_DISPLAY: mini main menu button", false),
 }
-if (globalProperties.deleteDiskCache) {
-	delete_full_cache();
-}
+if (globalProperties.deleteDiskCache) delete_full_cache();
+
+if (!compact_titlebar.isActive()) compact_titlebar.toggleValue();
 
 var scheduler = {
 	shutdown_after_current: false,
@@ -251,35 +251,27 @@ function Lightswitch(new_state) {
 	}
 
 	else {
-		// if (main_panel_state.isEqual(0)) {
-			properties.library_dark_theme = new_state;
+		properties.library_dark_theme = new_state;
 
-			window.NotifyOthers("library_dark_theme", properties.library_dark_theme);
-			window.SetProperty("LIBRARY dark theme", properties.library_dark_theme);
-			on_notify_data("library_dark_theme", properties.library_dark_theme);
-		// }
-		// if (main_panel_state.isEqual(1)) {
-			properties.playlists_dark_theme = new_state;
+		window.NotifyOthers("library_dark_theme", properties.library_dark_theme);
+		window.SetProperty("LIBRARY dark theme", properties.library_dark_theme);
+		on_notify_data("library_dark_theme", properties.library_dark_theme);
 
-			window.NotifyOthers("playlists_dark_theme", properties.playlists_dark_theme);
-			window.SetProperty("PLAYLISTS dark theme", properties.playlists_dark_theme);
-			on_notify_data("playlists_dark_theme", properties.playlists_dark_theme);
-			fb.RunMainMenuCommand("View/ElPlaylist/Refresh");
-		// }
-		// if (main_panel_state.isEqual(2)) {
-			properties.bio_dark_theme = new_state;
+		properties.playlists_dark_theme = new_state;
+		window.NotifyOthers("playlists_dark_theme", properties.playlists_dark_theme);
+		window.SetProperty("PLAYLISTS dark theme", properties.playlists_dark_theme);
+		on_notify_data("playlists_dark_theme", properties.playlists_dark_theme);
+		fb.RunMainMenuCommand("View/ElPlaylist/Refresh");
 
-			window.NotifyOthers("bio_dark_theme", properties.bio_dark_theme);
-			window.SetProperty("BIO dark theme", properties.bio_dark_theme);
-			on_notify_data("bio_dark_theme", properties.bio_dark_theme);
-		// }
-		// if (main_panel_state.isEqual(3)) {
-			properties.visualization_dark_theme = new_state;
+		properties.bio_dark_theme = new_state;
+		window.NotifyOthers("bio_dark_theme", properties.bio_dark_theme);
+		window.SetProperty("BIO dark theme", properties.bio_dark_theme);
+		on_notify_data("bio_dark_theme", properties.bio_dark_theme);
 
-			window.NotifyOthers("visualization_dark_theme", properties.visualization_dark_theme);
-			window.SetProperty("VISUALIZATION dark theme", properties.visualization_dark_theme);
-			on_notify_data("visualization_dark_theme", properties.visualization_dark_theme);
-		// }
+		properties.visualization_dark_theme = new_state;
+		window.NotifyOthers("visualization_dark_theme", properties.visualization_dark_theme);
+		window.SetProperty("VISUALIZATION dark theme", properties.visualization_dark_theme);
+		on_notify_data("visualization_dark_theme", properties.visualization_dark_theme);
 	}
 
 
