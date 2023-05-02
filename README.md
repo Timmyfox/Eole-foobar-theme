@@ -3,8 +3,12 @@ This is a modified version of the Eole foobar theme by Ottodix (https://github.c
 # Eole Foobar theme
 
 This is a skin for the [foobar2000](https://www.foobar2000.org) audio player.
-This theme requires Foobar2000 version 1.4 (or newer).
+This theme requires Foobar2000 32bit version 1.4 (or newer).
 Follow the [instructions below](https://github.com/Timmyfox/Eole-foobar-theme#installation) to install it properly.
+
+```bash
+  WARNING: The components required for this theme do not work with foobar 64bit
+```
 
 ## Contribute to the theme
 
